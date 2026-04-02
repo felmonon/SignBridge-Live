@@ -9,3 +9,5 @@ sign_language_model.pth
 .venv/
 frontend/node_modules/
 frontend/dist/
+.vercel
+.env*.local

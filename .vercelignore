@@ -1,0 +1,17 @@
+.git/
+.vercel/
+.env
+.env.local
+.env*.local
+.venv/
+SignLanguage/
+__pycache__/
+app/__pycache__/
+app/providers/__pycache__/
+app/services/__pycache__/
+frontend/node_modules/
+frontend/dist/
+data/
+sign_language_model.pth
+*.pyc
+*.log
