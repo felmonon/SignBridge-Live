@@ -15,10 +15,10 @@ The system is intentionally simple and API-first. It prioritizes a working end-t
 
 ### Frontend
 
-The companion frontend lives in:
+The frontend now lives in the repository under:
 
 ```text
-/Users/felmonfekadu/Desktop/SignBridge Live Web App Design
+frontend/
 ```
 
 Responsibilities:
@@ -29,7 +29,7 @@ Responsibilities:
 - play TTS audio returned by the backend
 - render live status, translation hero text, and transcript history
 
-The backend serves the built `dist/` bundle from this companion project.
+The backend serves the built `dist/` bundle from this in-repo frontend app.
 
 ### Backend
 
@@ -99,7 +99,7 @@ The backend serves the built Vite bundle via:
 - `GET /`
 - `GET /{full_path}`
 
-The asset directory is controlled by `FRONTEND_DIST_DIR`.
+The asset directory defaults to `frontend/dist` and can be overridden with `FRONTEND_DIST_DIR`.
 
 ## Session Model
 
@@ -156,4 +156,4 @@ That means it works as a prototype, but not as a claim of interpreter-grade reli
 - dependent on clip segmentation quality
 - dependent on general-purpose provider behavior
 - not guaranteed to preserve ASL grammar faithfully
-- not portable as a standalone repo until the frontend source is brought into the repository
+- still limited by generic multimodal provider behavior rather than a dedicated sign-language model

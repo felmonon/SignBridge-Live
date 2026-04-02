@@ -6,3 +6,6 @@ SignLanguage/
 data/
 sign_language_model.pth
 *.log
+.venv/
+frontend/node_modules/
+frontend/dist/

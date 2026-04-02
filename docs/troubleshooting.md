@@ -2,31 +2,33 @@
 
 ## `ModuleNotFoundError: No module named 'uvicorn'`
 
-Use the project virtual environment:
+Run the backend from the project virtual environment:
 
 ```sh
 cd /Users/felmonfekadu/Developer/SignLanguage
-./SignLanguage/bin/python run.py
+source .venv/bin/activate
+python run.py
 ```
 
 If needed:
 
 ```sh
-source SignLanguage/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## The backend says the frontend build is missing
+## Frontend build is missing
 
-Build the companion frontend:
+Build the in-repo frontend:
 
 ```sh
-cd "/Users/felmonfekadu/Desktop/SignBridge Live Web App Design"
+cd /Users/felmonfekadu/Developer/SignLanguage/frontend
 npm install
 npm run build
 ```
 
-If the frontend build lives somewhere else, set:
+If you intentionally serve a different build directory, set:
 
 ```sh
 export FRONTEND_DIST_DIR="/absolute/path/to/dist"
@@ -39,8 +41,8 @@ Check:
 - browser camera permission is granted
 - `GEMINI_API_KEY` is set
 - `GET /api/health` shows `gemini: true`
-- the signer is clearly visible with good lighting
-- clip timing is long enough for the signed utterance
+- the signer is visible with good lighting
+- clip timing is long enough for the utterance
 
 ## Translation works but voice output does not
 
@@ -49,25 +51,29 @@ Check:
 - `OPENAI_API_KEY` is set
 - `GET /api/health` shows `openai_tts: true`
 - browser audio is enabled
-- the page has received a user gesture so playback is allowed
+- the page has received a user gesture so browser playback is allowed
 
-## The browser loads but assets 404
+## Browser loads but assets 404
 
 This usually means:
 
-- the frontend was not rebuilt
+- `frontend/dist` was not rebuilt
 - `FRONTEND_DIST_DIR` is wrong
-- the backend is pointing at an old or missing `dist/`
+- the backend is pointing at a stale build
 
 ## GitHub push fails
 
-If `gh auth status` reports an invalid token, re-authenticate:
+Check:
+
+```sh
+gh auth status
+```
+
+If auth is invalid:
 
 ```sh
 gh auth login -h github.com
 ```
-
-Then create or connect the remote repository and push again.
 
 ## API keys were exposed
 

@@ -1,0 +1,67 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Custom scrollbar styles for premium feel */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--fog-600) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--fog-600);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--fog-500);
+}
+
+/* Custom input range styling */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-seafoam);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(125, 211, 192, 0.4);
+  border: 2px solid var(--bg-void);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(125, 211, 192, 0.6);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-seafoam);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(125, 211, 192, 0.4);
+  border: 2px solid var(--bg-void);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(125, 211, 192, 0.6);
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent-seafoam-glow);
+  color: var(--fog-100);
+}

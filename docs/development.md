@@ -1,103 +1,70 @@
 # Development Guide
 
-## Local Workflow
+## Overview
 
-This project currently uses a split workspace:
+SignBridge Live is now a single repository with:
 
-- backend source in this repository
-- frontend source in the companion desktop directory
+- `app/` for the FastAPI backend
+- `frontend/` for the React + Vite frontend
 
-Backend repository:
+The backend serves the built frontend from `frontend/dist` by default.
 
-```text
-/Users/felmonfekadu/Developer/SignLanguage
-```
+## Local Setup
 
-Frontend source:
-
-```text
-/Users/felmonfekadu/Desktop/SignBridge Live Web App Design
-```
-
-## Backend Setup
-
-Create or activate the Python virtual environment:
+### Backend
 
 ```sh
 cd /Users/felmonfekadu/Developer/SignLanguage
-source SignLanguage/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Run the backend:
+Start the backend:
 
 ```sh
-./SignLanguage/bin/python run.py
+python run.py
 ```
 
-## Frontend Setup
-
-Install dependencies:
+### Frontend
 
 ```sh
-cd "/Users/felmonfekadu/Desktop/SignBridge Live Web App Design"
+cd /Users/felmonfekadu/Developer/SignLanguage/frontend
 npm install
 ```
 
-Run the frontend in Vite dev mode if you want to work on the UI directly:
+Run the frontend in Vite dev mode:
 
 ```sh
 npm run dev
 ```
 
-Build the frontend for backend serving:
+Build the production frontend that FastAPI serves:
 
 ```sh
 npm run build
 ```
 
-The backend reads the built output from `FRONTEND_DIST_DIR`.
-
-## Backend-Frontend Integration Contract
-
-The frontend expects:
-
-- `POST /api/session`
-- `POST /api/translate`
-- `POST /api/speak`
-- `GET /api/health`
-
-The backend expects:
-
-- a built frontend `dist/` directory
-- valid Gemini and OpenAI API keys
-
 ## Recommended Edit Cycle
 
-1. edit frontend in the desktop companion project
-2. run `npm run build`
-3. restart or refresh the backend-served app
-4. verify browser behavior against `http://127.0.0.1:8000`
+1. modify backend code in `app/` as needed
+2. modify frontend code in `frontend/src/`
+3. run `npm run build` inside `frontend/`
+4. run or refresh the FastAPI app
+5. verify behavior at `http://127.0.0.1:8000`
 
 ## Validation Checklist
 
-Before publishing changes:
+Before pushing changes:
 
 - backend imports compile cleanly
 - frontend production build succeeds
 - `GET /api/health` returns `200`
 - `GET /` returns the built frontend
-- one manual translation cycle works end to end
-- one manual TTS playback cycle works end to end
+- at least one manual translation request succeeds
+- at least one manual TTS playback succeeds
 
-## Recommended Future Refactor
+## Notes
 
-If you want a portable public repository, move to a monorepo like:
-
-```text
-signbridge-live/
-├── backend/
-└── frontend/
-```
-
-That would remove the current desktop-path dependency and make CI/CD far cleaner.
+- `FRONTEND_DIST_DIR` is optional and only needed if you want the backend to serve a different build path.
+- The frontend uses relative `/api/...` calls, so it works cleanly when served by the backend.

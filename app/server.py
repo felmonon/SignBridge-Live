@@ -35,7 +35,7 @@ def _frontend_response(path: str) -> Response:
     if not FRONTEND_DIST.exists():
         return PlainTextResponse(
             "Frontend build not found. Run `npm install` and `npm run build` in "
-            "`~/Desktop/SignBridge Live Web App Design`.",
+            "`./frontend`.",
             status_code=503,
         )
 

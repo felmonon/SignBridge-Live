@@ -1,0 +1,239 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* SignBridge Live Premium Design System */
+  
+  /* Deep luxurious backgrounds */
+  --bg-void: #0a0d14;
+  --bg-deep: #0f121a;
+  --bg-surface: #141821;
+  --bg-elevated: #1a1f2e;
+  --bg-panel: #1f2533;
+  
+  /* Signature seafoam/teal accent */
+  --accent-seafoam: #7dd3c0;
+  --accent-seafoam-muted: #5da79a;
+  --accent-seafoam-bright: #9ffce8;
+  --accent-seafoam-glow: rgba(125, 211, 192, 0.2);
+  
+  /* Status colors */
+  --status-live: #7dd3c0;
+  --status-active: #6ed5c3;
+  --status-warning: #d4a574;
+  --status-error: #e28b7d;
+  --status-success: #7dd3c0;
+  --status-amber: #deb887;
+  
+  /* Fog and muted colors */
+  --fog-100: #f5f6f8;
+  --fog-200: #e8eaed;
+  --fog-300: #c4c8cf;
+  --fog-400: #9399a3;
+  --fog-500: #6b7280;
+  --fog-600: #4b5563;
+  
+  /* Glass materials */
+  --glass-bg: rgba(26, 31, 46, 0.6);
+  --glass-border: rgba(125, 211, 192, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+  
+  /* Edge lighting */
+  --edge-light: rgba(125, 211, 192, 0.3);
+  --edge-light-subtle: rgba(125, 211, 192, 0.15);
+  
+  /* Shadows and glows */
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.25);
+  --shadow-deep: 0 8px 48px rgba(0, 0, 0, 0.4);
+  --glow-accent: 0 0 40px rgba(125, 211, 192, 0.15);
+  --glow-strong: 0 0 60px rgba(125, 211, 192, 0.25);
+  
+  /* Typography scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Spacing system */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* Radius system - large and premium */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+  
+  /* Animation timings */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+  
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Backdrop blur */
+  --blur-sm: 8px;
+  --blur-md: 12px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
+  
+  /* Glass noise texture for richness */
+  --noise-opacity: 0.03;
+  --noise-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  
+  /* Standard theme tokens for compatibility */
+  --font-size: 16px;
+  --background: var(--bg-void);
+  --foreground: var(--fog-100);
+  --card: var(--bg-surface);
+  --card-foreground: var(--fog-100);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--fog-100);
+  --primary: var(--accent-seafoam);
+  --primary-foreground: var(--bg-void);
+  --secondary: var(--bg-panel);
+  --secondary-foreground: var(--fog-100);
+  --muted: var(--bg-panel);
+  --muted-foreground: var(--fog-400);
+  --accent: var(--accent-seafoam);
+  --accent-foreground: var(--bg-void);
+  --destructive: var(--status-error);
+  --destructive-foreground: var(--fog-100);
+  --border: var(--glass-border);
+  --input: var(--glass-bg);
+  --ring: var(--accent-seafoam);
+  --radius: var(--radius-lg);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+  
+  /* Premium scrollbar styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--fog-600) transparent;
+  }
+  
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background: var(--fog-600);
+    border-radius: 4px;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--fog-500);
+  }
+}

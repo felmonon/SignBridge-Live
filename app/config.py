@@ -33,7 +33,7 @@ class Settings:
     port: int = int(os.getenv("PORT", "8000"))
     frontend_dist_dir: str = os.getenv(
         "FRONTEND_DIST_DIR",
-        str(Path.home() / "Desktop" / "SignBridge Live Web App Design" / "dist"),
+        str(Path(__file__).resolve().parent.parent / "frontend" / "dist"),
     )
 
     gemini_api_key: str | None = os.getenv("GEMINI_API_KEY")
