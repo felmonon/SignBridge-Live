@@ -61,6 +61,15 @@ This usually means:
 - `FRONTEND_DIST_DIR` is wrong
 - the backend is pointing at a stale build
 
+## Session continuity is inconsistent on Vercel
+
+Check:
+
+- `UPSTASH_REDIS_REST_URL` is set in Vercel
+- `UPSTASH_REDIS_REST_TOKEN` is set in Vercel
+- `GET /api/health` shows `session_store.backend` as `upstash-redis`
+- `SESSION_TTL_SECONDS` is long enough for your conversation flow
+
 ## GitHub push fails
 
 Check:

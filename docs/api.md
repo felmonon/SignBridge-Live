@@ -16,6 +16,10 @@ Returns backend health and provider availability.
 {
   "ok": true,
   "app": "SignBridge Live",
+  "session_store": {
+    "backend": "upstash-redis",
+    "ttl_seconds": 1800
+  },
   "providers": {
     "gemini": true,
     "openai_tts": true
@@ -38,7 +42,8 @@ Creates a live translation session.
     "gemini": true,
     "openai_tts": true
   },
-  "sign_language_hint": "ASL"
+  "sign_language_hint": "ASL",
+  "session_store": "upstash-redis"
 }
 ```
 

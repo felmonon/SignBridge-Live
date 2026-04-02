@@ -9,6 +9,8 @@ SignBridge Live is a single-repository web application for live sign-language tr
 
 The app captures short live webcam clips in the browser, translates signed utterances into English, suppresses obvious duplicate outputs on the backend, and can speak the translated English aloud.
 
+For serverless deployments, SignBridge Live can persist short session context in Upstash Redis so duplicate suppression and transcript continuity survive cold starts and multi-instance routing.
+
 ## Repository Structure
 
 ```text
@@ -85,6 +87,11 @@ Set:
 
 - `GEMINI_API_KEY`
 - `OPENAI_API_KEY`
+
+Optional for production-safe shared session state:
+
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
 
 ### 3. Install backend dependencies
 
@@ -164,6 +171,10 @@ The backend serves `frontend/dist` by default.
 | `OPENAI_TTS_VOICE` | No | Default `coral` |
 | `CLIP_SECONDS` | No | Default clip length returned at session bootstrap |
 | `SIGN_LANGUAGE_HINT` | No | Default sign-language hint, usually `ASL` |
+| `SESSION_CONTEXT_LIMIT` | No | Number of recent emitted utterances forwarded back into Gemini, default `6` |
+| `SESSION_TTL_SECONDS` | No | Sliding expiration for stored session context, default `1800` |
+| `UPSTASH_REDIS_REST_URL` | No | Enables shared session storage for serverless deployments |
+| `UPSTASH_REDIS_REST_TOKEN` | No | Enables shared session storage for serverless deployments |
 
 ## API Summary
 
@@ -188,6 +199,7 @@ See [docs/api.md](docs/api.md) for request/response examples.
 - Do not commit `.env`.
 - Rotate API keys if they were exposed in chat, screenshots, terminal history, or logs.
 - This app sends video clips to external providers for translation and speech generation.
+- For Vercel or other serverless platforms, configure Upstash Redis if you need session continuity across instances.
 
 ## Notes
 

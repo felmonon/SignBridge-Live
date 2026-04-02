@@ -26,6 +26,13 @@ Start the backend:
 python run.py
 ```
 
+If you want local parity with production session behavior, also configure:
+
+```sh
+export UPSTASH_REDIS_REST_URL="..."
+export UPSTASH_REDIS_REST_TOKEN="..."
+```
+
 ### Frontend
 
 ```sh
@@ -60,6 +67,7 @@ Before pushing changes:
 - backend imports compile cleanly
 - frontend production build succeeds
 - `GET /api/health` returns `200`
+- `GET /api/health` reports the expected `session_store.backend`
 - `GET /` returns the built frontend
 - at least one manual translation request succeeds
 - at least one manual TTS playback succeeds

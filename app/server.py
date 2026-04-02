@@ -54,6 +54,10 @@ async def health():
     return {
         "ok": True,
         "app": settings.app_name,
+        "session_store": {
+            "backend": sessions.backend,
+            "ttl_seconds": settings.session_ttl_seconds,
+        },
         "providers": {
             "gemini": translator.enabled,
             "openai_tts": tts_service.enabled,
@@ -63,7 +67,7 @@ async def health():
 
 @app.post("/api/session")
 async def create_session():
-    session = sessions.create()
+    session = await asyncio.to_thread(sessions.create)
     return {
         "session_id": session.session_id,
         "app_name": settings.app_name,
@@ -73,6 +77,7 @@ async def create_session():
             "openai_tts": tts_service.enabled,
         },
         "sign_language_hint": settings.default_sign_language,
+        "session_store": sessions.backend,
     }
 
 
@@ -86,7 +91,7 @@ async def translate_clip(payload: TranslateClipRequest):
         raise HTTPException(status_code=413, detail="Video clip is too large.")
 
     started = perf_counter()
-    session = sessions.get(payload.session_id)
+    session = await asyncio.to_thread(sessions.get, payload.session_id)
 
     result = await asyncio.to_thread(
         translator.translate_clip,
@@ -96,6 +101,7 @@ async def translate_clip(payload: TranslateClipRequest):
         conversation_context=session.context_lines(),
     )
     translation, should_speak, status = session.register(result)
+    await asyncio.to_thread(sessions.save, session)
     elapsed_ms = int((perf_counter() - started) * 1000)
 
     return TranslateClipResponse(

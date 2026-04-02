@@ -47,6 +47,11 @@ class Settings:
     clip_seconds: float = float(os.getenv("CLIP_SECONDS", "3.0"))
     max_clip_bytes: int = int(os.getenv("MAX_CLIP_BYTES", str(15 * 1024 * 1024)))
     transcript_limit: int = int(os.getenv("TRANSCRIPT_LIMIT", "12"))
+    session_context_limit: int = int(os.getenv("SESSION_CONTEXT_LIMIT", "6"))
+    session_ttl_seconds: int = int(os.getenv("SESSION_TTL_SECONDS", "1800"))
+
+    upstash_redis_rest_url: str | None = os.getenv("UPSTASH_REDIS_REST_URL")
+    upstash_redis_rest_token: str | None = os.getenv("UPSTASH_REDIS_REST_TOKEN")
 
     @property
     def gemini_enabled(self) -> bool:
@@ -55,6 +60,10 @@ class Settings:
     @property
     def openai_tts_enabled(self) -> bool:
         return bool(self.openai_api_key)
+
+    @property
+    def redis_enabled(self) -> bool:
+        return bool(self.upstash_redis_rest_url and self.upstash_redis_rest_token)
 
 
 settings = Settings()
