@@ -3,6 +3,14 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+def _env_first(*names: str) -> str | None:
+    for name in names:
+        value = os.getenv(name)
+        if value:
+            return value
+    return None
+
+
 def _load_dotenv() -> None:
     env_path = Path(__file__).resolve().parent.parent / ".env"
     if not env_path.exists():
@@ -50,8 +58,14 @@ class Settings:
     session_context_limit: int = int(os.getenv("SESSION_CONTEXT_LIMIT", "6"))
     session_ttl_seconds: int = int(os.getenv("SESSION_TTL_SECONDS", "1800"))
 
-    upstash_redis_rest_url: str | None = os.getenv("UPSTASH_REDIS_REST_URL")
-    upstash_redis_rest_token: str | None = os.getenv("UPSTASH_REDIS_REST_TOKEN")
+    upstash_redis_rest_url: str | None = _env_first(
+        "UPSTASH_REDIS_REST_URL",
+        "KV_REST_API_URL",
+    )
+    upstash_redis_rest_token: str | None = _env_first(
+        "UPSTASH_REDIS_REST_TOKEN",
+        "KV_REST_API_TOKEN",
+    )
 
     @property
     def gemini_enabled(self) -> bool:

@@ -175,6 +175,8 @@ The backend serves `frontend/dist` by default.
 | `SESSION_TTL_SECONDS` | No | Sliding expiration for stored session context, default `1800` |
 | `UPSTASH_REDIS_REST_URL` | No | Enables shared session storage for serverless deployments |
 | `UPSTASH_REDIS_REST_TOKEN` | No | Enables shared session storage for serverless deployments |
+| `KV_REST_API_URL` | No | Vercel Marketplace alias for the Upstash Redis REST URL |
+| `KV_REST_API_TOKEN` | No | Vercel Marketplace alias for the Upstash Redis REST token |
 
 ## API Summary
 

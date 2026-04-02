@@ -121,7 +121,7 @@ This allows the backend to:
 
 By default, local development uses an in-memory session store.
 
-If `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are configured, the backend stores session state in Upstash Redis with a sliding TTL. This is the recommended mode for Vercel and other serverless platforms where requests may land on different instances.
+If `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are configured, the backend stores session state in Upstash Redis with a sliding TTL. It also accepts Vercel Marketplace aliases `KV_REST_API_URL` and `KV_REST_API_TOKEN`. This is the recommended mode for Vercel and other serverless platforms where requests may land on different instances.
 
 ## Translation Strategy
 
