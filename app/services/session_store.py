@@ -122,7 +122,10 @@ class SessionStore:
             )
 
         self.backend = "upstash-redis"
-        return Redis.from_env()
+        return Redis(
+            url=settings.upstash_redis_rest_url,
+            token=settings.upstash_redis_rest_token,
+        )
 
     def _redis_key(self, session_id: str) -> str:
         return f"signbridge:session:{session_id}"
