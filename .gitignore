@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+SignLanguage/
+data/
+sign_language_model.pth
+*.log
